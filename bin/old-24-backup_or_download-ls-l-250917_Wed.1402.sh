@@ -77,10 +77,10 @@ fi
 
 #-- echo "#-- ls -l ${NAME_LS_L} | awk -F\"${user_grp}\" '{print ${{SERVER_OR_DOWNLOAD}}\" \"$2}'"
 if [ "x${SERVER_OR_DOWNLOAD}" = "x${SERVER_CHAR}" ]; then
-  ls -l ${dir_name} | awk -F"${user_grp}" '{print "${SERVER_CHAR} "$2}' >> ${NAME_LS_L}
+  ls -l ${dir_name} | awk -F"${user_grp}" "{print \"${SERVER_CHAR} \"\$2}" >> ${NAME_LS_L}
 else
   if [ "x${SERVER_OR_DOWNLOAD}" = "x${DOWNLOAD_CHAR}" ]; then
-    ls -l 11-last_big_files | awk -F"${user_grp}" '{print "${DOWNLOAD_CHAR} "$2}' >> ${NAME_LS_L}
+    ls -l 11-last_big_files | awk -F"${user_grp}" "{print \"${DOWNLOAD_CHAR} \"\$2}" >> ${NAME_LS_L}
   fi
 fi
 
