@@ -17,13 +17,13 @@ cmdYrun () {
 }
 
 cat <<__EOF__
-d ..... 다운로드 받은 파일목록 작성
-s ..... 백업해둔 파일목록 작성
-#---> Enter: [ d 또는 s ]
+D ..... 다운로드 받은 파일목록 작성
+S ..... 백업해둔 파일목록 작성
+#---> Enter: [ D 또는 S ]
 __EOF__
 read d_or_s
-if [[ "x${d_or_s}" != "xd" && "x${d_or_s}" != "xs" ]]; then
-	echo "#-- 첫번째 전달자에 d 또는 s 값이 있어야 합니다."
+if [[ "x${d_or_s}" != "xD" && "x${d_or_s}" != "xS" ]]; then
+	echo "#-- 첫번째 전달자에 D 또는 S 값이 있어야 합니다."
 	exit -103
 fi
 cat <<__EOF__

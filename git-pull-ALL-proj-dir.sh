@@ -35,5 +35,6 @@ done
 cat <<__EOF__
 ${yyy}#-- ${bbb} ghp_dW4Z4dDZWHrvacH6NKvzLz5FCGQHVB0c 대피so디지대피 2507장마철 — repo Expires on Thu, Oct 2 2025.
 bitbucket 4카 BBwjLQ6yLFTmNrygzXrP3fdm9f6172DA 앹대..육이
+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?
 ${xxx}
 __EOF__
