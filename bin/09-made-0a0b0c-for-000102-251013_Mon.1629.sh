@@ -16,25 +16,33 @@ cmdYrun () {
 	fi
 }
 
+d_or_s="$1"
 cat <<__EOF__
 D ..... 다운로드 받은 파일목록 작성
 S ..... 백업해둔 파일목록 작성
-#---> Enter: [ D 또는 S ]
+#---> Enter: [ ${d_or_s} ] #-- D 또는 S
 __EOF__
-read d_or_s
+read a
+if [ "x$a" != "x" ]; then
+	d_or_s=$a
+fi
 if [[ "x${d_or_s}" != "xD" && "x${d_or_s}" != "xS" ]]; then
 	echo "#-- 첫번째 전달자에 D 또는 S 값이 있어야 합니다."
 	exit -103
 fi
+zero_or_one="$2"
 cat <<__EOF__
 ${uuu}${rrr}[ ${yyy}${d_or_s} ${rrr}]${xxx}
 
 0 ..... 00-bada 의 목록
 1 ..... 01-last_big_files 의 목록
 2 ..... 02-more_300M_files
-#---> Enter: [ 0, 1 또는 2 ]
+#---> Enter: [ ${zero_or_one} ] #-- 0, 1 또는 2
 __EOF__
-read zero_or_one
+read a
+if [ "x$a" != "x" ]; then
+	zero_or_one=$a
+fi
 if [[ "x${zero_or_one}" == "x0" ]]; then
 	dir_typeNo="00"
 	dir_name="${dir_typeNo}-bada"
@@ -45,13 +53,13 @@ else
 		dir_typeNo="01"
 		dir_name="${dir_typeNo}-last_big_files"
 		abc_name="b"
-		seq_dir_name="0${abc_name}${d_or_s}-${dir_name}"
+		seq_dir_name="0${abc_name}${d_or_s}-${dir_name}" #-- 0b-01-last_
 	else
 		if [ "x${zero_or_one}" == "x2" ]; then
 			dir_typeNo="02"
 			dir_name="${dir_typeNo}-more_300M_files"
 			abc_name="c"
-			seq_dir_name="0${abc_name}${d_or_s}-${dir_name}"
+			seq_dir_name="0${abc_name}${d_or_s}-${dir_name}" #-- 0c-02-more_
 		else
 			echo "#-- 두번째 전달자에 0, 1 또는 2 값이 있어야 합니다."
 			exit -104
@@ -73,10 +81,10 @@ cmdrun "ls -l ${seq_dir_name}*[zl]; mv ${seq_dir_name}*[zl] ${trash_dir}/" "(1) 
 seq_dir_ymdhm_7z="${seq_dir_name}-$(LC_TIME=C date +%y%m%d_%a.%H%M).7z"
 
 #-- 이름순
-cmdrun "ls -l ${dir_name}/ | awk -v dors="${d_or_s}" 'NR > 1 { file_type = substr(\$1, 1, 1); printf \"%s %s %12s %5s %2s %5s %s \", file_type, dors, \$5, \$6, \$7, \$8, \$9; printf \"\\n\" }' > ${seq_dir_ymdhm_7z}.ls-l" "(2) 이름순 ${seq_dir_ymdhm_7z}.ls-l 목록을 만듭니다."
+cmdrun "ls -l ${dir_name}/ | awk -v dors="${d_or_s}" 'NR > 1 { file_type = substr(\$1, 1, 1); printf \"%s %s %12s %5s %2s %5s %s \", file_type, dors, \$5, \$6, \$7, \$8, \$9; printf \"\\n\" }' > 0${seq_dir_ymdhm_7z}.ls-l" "(2) '00' 으로 시작하는 이름순 ${seq_dir_ymdhm_7z}.ls-l 목록을 만듭니다." #-- 00[abc][DS]-0[012]-
 
 #-- 기타 = 시간순
-cmdrun "ls -rtl ${dir_name}/ | awk -v dors="${d_or_s}" 'NR > 1 { file_type = substr(\$1, 1, 1); printf \"%s %s %12s %5s %2s %5s %s \", file_type, dors, \$5, \$6, \$7, \$8, \$9; printf \"\\n\" }' > ${seq_dir_ymdhm_7z}.ls-rtl" "(3) ${seq_dir_ymdhm_7z}.ls-rtl 시간순 목록을 만듭니다."
+cmdrun "ls -rtl ${dir_name}/ | awk -v dors="${d_or_s}" 'NR > 1 { file_type = substr(\$1, 1, 1); printf \"%s %s %12s %5s %2s %5s %s \", file_type, dors, \$5, \$6, \$7, \$8, \$9; printf \"\\n\" }' > ${seq_dir_ymdhm_7z}.ls-rtl" "(3) '0' 한개로 시작하는 ${seq_dir_ymdhm_7z}.ls-rtl 시간순 목록을 만듭니다." #-- 0[abc][DS]-0[012]-
 
 cmdYrun "time 7za a -mx=9 -p ${seq_dir_ymdhm_7z} ${dir_name}/" "(4) ${dir_name} 폴더를 압축합니다."
 
