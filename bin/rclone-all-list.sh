@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rc_lsl="wind_bada/rclone-lsl"
+rc_lsl="wind_bada/rclone_lsl"
 if [ ! -d ~/${rc_lsl} ]; then
 	cd ~/; mkdir -p ${rc_lsl}
 	echo "#---> cd ~/; mkdir -p ${rc_lsl} #-- 받는 폴더를 만들고 이동합니다."

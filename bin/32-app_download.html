@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Software Manager</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; padding: 20px; line-height: 1.6; }
+        .controls { margin-bottom: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f4f4f4; }
+        .btn { padding: 6px 12px; cursor: pointer; border-radius: 4px; text-decoration: none; display: inline-block; }
+        .btn-all { background: #28a745; color: white; border: none; font-weight: bold; margin-bottom: 10px; }
+        .btn-link { background: #007bff; color: white; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h2>업데이트 관리 목록</h2>
+    <button onclick="openAllTabs()" class="btn btn-all">모든 다운로드 페이지 열기</button>
+    <table>
+        <thead>
+            <tr><th>파일명</th><th>이전 크기</th><th>링크</th></tr>
+        </thead>
+        <tbody id="list"></tbody>
+    </table>
+
+    <script src="31-app_url_siz_name-data.js"></script>
+    <script>
+        const listBody = document.getElementById('list');
+
+        function makeUrl(item) {
+                return `${item.url}?q=_siz_${item.siz}_dat_${item.dat}_rem_${encodeURIComponent(item.rem)}---${item.hed}${item.ver}${item.ext}`;
+        }
+
+        softwareData.forEach(item => {
+            const name = item.hed + item.ver + item.ext;
+            listBody.innerHTML += `<tr>
+                <td><strong>${name}</strong></td>
+                <td>${Number(item.siz).toLocaleString()} B</td>
+                <td><a href="${makeUrl(item)}" target="_blank" class="btn btn-link">페이지 열기</a></td>
+            </tr>`;
+        });
+
+        function openAllTabs() {
+            if(confirm("모든 탭을 열까요?")) {
+                softwareData.forEach(item => window.open(makeUrl(item), '_blank'));
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>최종버전 다운로드</title>
+<style>
+  table {
+    width: 94%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    width: auto;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+<script>
+  window.onload = function() {
+    const programs = [
+      { url: "https://addons.mozilla.org/en-US/firefox/addon/darkreader/", rem: "", siz: "0", dat: "260104_1020", hed: "Dark Reader", ver: "_", ext: "파폭확장" },
+      { url: "https://addons.mozilla.org/en-US/firefox/addon/keepassxc-browser/", rem: "", siz: "0", dat: "260104_1020", hed: "KeePassXC", ver: "_", ext: "파폭확장" },
+      { url: "https://addons.mozilla.org/en-US/firefox/addon/pomodoro-clock/", rem: "", siz: "0", dat: "260104_1020", hed: "Pomodoro", ver: "_", ext: "파폭확장" },
+      { url: "https://addons.mozilla.org/en-US/firefox/addon/screen-recorder/", rem: "", siz: "0", dat: "260104_1020", hed: "스크린 레코더", ver: "_", ext: "파폭확장" },
+      { url: "https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh", rem: "", siz: "0", dat: "260104_1020", hed: "DarkReader", ver: "_", ext: "크롬확장" },
+      { url: "https://chromewebstore.google.com/detail/keepassxc-browser/oboonakemofpalcgghocfoadofidjkkk", rem: "", siz: "0", dat: "260104_1020", hed: "KeePassXC", ver: "_", ext: "크롬확장" },
+      { url: "https://chromewebstore.google.com/detail/pomodoro-chrome-extension/iccjkhpkdhdhjiaocipcegfeoclioejn", rem: "", siz: "0", dat: "260104_1020", hed: "Pomodoro", ver: "_", ext: "크롬확장" }, // 수정 완료
+      { url: "https://chromewebstore.google.com/detail/screen-recorder-for-googl/eclbecdgdoahkliaijlpkigldlkojjdn", rem: "", siz: "0", dat: "260104_1020", hed: "스크린 레코더", ver: "_", ext: "크롬확장" },
+      { url: "https://www.7-zip.org/download.html", rem: "7zip", siz: "1643509", dat: "251231_0953", hed: "7z", ver: "2501-x64", ext: ".exe" },
+      { url: "https://www.anaconda.com/download/success", rem: "", siz: "956650896", dat: "251106_1048", hed: "Anaconda3", ver: "-2024.06-1-Windows-x86_64", ext: ".exe" },
+      { url: "https://www.anaconda.com/download/success", rem: "", siz: "93135224", dat: "251116_1148", hed: "Miniconda3", ver: "-latest-Windows-x86_64", ext: ".exe" },
+      { url: "https://developer.android.com/studio?hl=ko", rem: "", siz: "1396286264", dat: "251019_1111", hed: "android-studio", ver: "-2025.1.4.8-windows", ext: ".exe" },
+      { url: "https://brave.com/ko/download/", rem: "", siz: "1277280", dat: "251124_1111", hed: "BraveBrowserSetup", ver: "-BRV002", ext: ".exe" },
+      { url: "https://www.google.co.kr/chrome/", rem: "142.0.7444.135", siz: "10752440", dat: "251231_1009", hed: "ChromeSetup", ver: "", ext: ".exe" },
+      { url: "https://www.firefox.com/en-US/", rem: "146.0.1", siz: "383808", dat: "251231_1009", hed: "Firefox Installer", ver: "", ext: ".exe" }, // 수정 완료
+      { url: "https://www.cursor.com/downloads", rem: "Cursor !!! Setup", siz: "144754192", dat: "251124_1111", hed: "CursorSetup", ver: "-x64-2.1.25", ext: ".exe" },
+      { url: "https://www.cursor.com/downloads", rem: "Cursor !!! User !!! Setup", siz: "144754408", dat: "251124_1111", hed: "CursorUserSetup", ver: "-x64-2.1.25", ext: ".exe" },
+      { url: "https://www.gyan.dev/ffmpeg/builds/", rem: "", siz: "32453247", dat: "251030_1359", hed: "ffmpeg", ver: "-8.0-essentials_build", ext: "7z" },
+      { url: "https://www.gimp.org/downloads/", rem: "", siz: "310438120", dat: "251019_1111", hed: "gimp", ver: "-3.0.6-setup-1", ext: ".exe" },
+      { url: "https://git-scm.com/downloads", rem: "(2-1) Git", siz: "66292520", dat: "251212_0713", hed: "Git", ver: "-2.52.0-64-bit", ext: ".exe" },
+      { url: "https://git-scm.com/downloads", rem: "(2-2) Portable Git", siz: "60238232", dat: "251122_1041", hed: "PortableGit", ver: "-2.52.0-64-bit.7z", ext: ".exe" },
+      { url: "https://getapp.ridibooks.com/windows", rem: "", siz: "10964291", dat: "251030_1321", hed: "gvim", ver: "_9.1.1887_arm64", ext: ".exe" },
+      { url: "https://www.jetbrains.com/idea/download/?section=windows#", rem: "", siz: "992995352", dat: "251019_1112", hed: "ideaIC", ver: "-2025.2.3", ext: ".exe" },
+      { url: "https://keepassxc.org/download", rem: "(2-1) Installer", siz: "35672064", dat: "260104_1310", hed: "KeePassXC", ver: "-2.7.11-Win64", ext: ".msi" },
+      { url: "https://keepassxc.org/download", rem: "(2-2) Portable", siz: "35164057", dat: "260104_1309", hed: "KeePassXC", ver: "-2.7.11-Win64", ext: ".zip" },
+      { url: "https://ko.libreoffice.org/download/libreoffice-fresh/", rem: "", siz: "365453312", dat: "251027_1246", hed: "LibreOffice", ver: "_25.8.2_Win_x86-64", ext: ".msi" },
+      { url: "https://nodejs.org/ko/download", rem: "", siz: "31514624", dat: "251022_1008", hed: "node", ver: "-v22.21.0-x64", ext: ".msi" },
+      { url: "https://www.enterprisedb.com/downloads/postgres-postgresql-downloads", rem: "", siz: "367019896", dat: "251027_1306", hed: "postgresql", ver: "-17.6-2-windows-x64", ext: ".exe" },
+      { url: "https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html", rem: "", siz: "3831808", dat: "250927_0939", hed: "putty", ver: "-64bit-0.83-installer", ext: ".msi" },
+      { url: "https://www.python.org/downloads/windows/", rem: "", siz: "29900480", dat: "251019_1112", hed: "python", ver: "-3.14.0-amd64", ext: ".exe" },
+      { url: "https://getapp.ridibooks.com/windows", rem: "", siz: "176780720", dat: "250830_1301", hed: "Ridibooks_Setup", ver: "_0.11.6", ext: ".exe" },
+      { url: "https://repo.msys2.org/msys/x86_64/", rem: "(2-1) rsync.zst", siz: "376807", dat: "260104_1344", hed: "rsync", ver: "-3.4.1-1-x86_64.pkg.tar", ext: ".zst" },
+      { url: "https://repo.msys2.org/msys/x86_64/", rem: "(2-2) rsync.zst.sig", siz: "566", dat: "260104_1344", hed: "rsync", ver: "-3.4.1-1-x86_64.pkg.tar.zst", ext: ".sig" },
+      { url: "https://rufus.ie/downloads/", rem: "", siz: "1936744", dat: "251030_1316", hed: "rufus", ver: "-4.11", ext: ".exe" },
+      { url: "https://rust-lang.org/tools/install/", rem: "", siz: "13551616", dat: "251119_1715", hed: "rustup", ver: "-init", ext: ".exe" },
+      { url: "https://ubuntu.com/download/server", rem: "", siz: "0", dat: "250819_1229", hed: "ubuntu", ver: "-24.04.3-live-server-amd64", ext: ".iso" },
+      { url: "https://learn.microsoft.com/ko-kr/cpp/windows/latest-supported-vc-redist?view=msvc-170", rem: "v14.50.35719", siz: "18558944", dat: "260104_1045", hed: "VC_redist", ver: ".x64", ext: ".exe" },
+      { url: "https://www.virtualbox.org/wiki/Downloads", rem: "(2-1) VBox", siz: "176488552", dat: "251027_1246", hed: "VirtualBox", ver: "-7.2.4-170995-Win", ext: ".exe" },
+      { url: "https://www.virtualbox.org/wiki/Downloads", rem: "(2-2) ExtPack", siz: "22771750", dat: "251027_1246", hed: "Oracle_VirtualBox_Extension_Pack-7.2.4.vbox-extpack", ver: "-7.2.4", ext: ".vbox-extpack" },
+      { url: "https://visualstudio.microsoft.com/ko/vs/", rem: "", siz: "4416520", dat: "260104_1046", hed: "VisualStudioSetup", ver: "", ext: ".exe" },
+      { url: "https://visualstudio.microsoft.com/ko/downloads/", rem: "", siz: "115869512", dat: "251116_1153", hed: "VSCodeUserSetup", ver: "-x64-1.106.0", ext: ".exe" },
+      { url: "https://winscp.net/eng/download.php", rem: "", siz: "12254760", dat: "260104_1028", hed: "WinSCP", ver: "-6.5.5-Setup", ext: ".exe" },
+      { url: "https://www.yes24.com/notice/ebookguide/guide_pc.aspx", rem: "5.2.2.1091", siz: "196453704", dat: "251124_1118", hed: "YES24eBookSetup", ver: "", ext: ".zip" },
+      { url: "https://github.com/yt-dlp/yt-dlp#release-files", rem: "", siz: "18457028", dat: "260104_1047", hed: "yt-dlp", ver: "", ext: ".exe" },
+      { url: "https://zed.dev/download", rem: "0.216.1", siz: "95933136", dat: "260104_1047", hed: "Zed", ver: "-x86_64", ext: ".exe" }
+    ];
+
+    const body = document.body;
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
+    const headerRow = document.createElement('tr');
+
+    ['프로그램 이름', '버전', '다운로드 날짜'].forEach(headerText => {
+      const th = document.createElement('th');
+      th.textContent = headerText;
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // 새 창 열기 루프
+    for (let i = programs.length - 1; i >= 0; i--) {
+      const program = programs[i];
+	    const queryString = `____${program.hed}____${program.ver}____${program.ext} !!! ${program.rem}`;
+      const fullUrl = `${program.url}?q=${encodeURIComponent(queryString)}`;
+      window.open(fullUrl, '_blank');
+    }
+
+    // 테이블 생성 루프
+    for (let i = 0; i < programs.length; i++) {
+      const program = programs[i];
+      const tr = document.createElement('tr');
+
+      const nameTd = document.createElement('td');
+      nameTd.innerHTML = `<a href="${program.url}" target="_blank">${program.hed}${program.ver}${program.ext}</a>`;
+      tr.appendChild(nameTd);
+
+      const verTd = document.createElement('td');
+      verTd.textContent = program.ver;
+      tr.appendChild(verTd);
+
+      const datTd = document.createElement('td');
+      datTd.textContent = program.dat;
+      tr.appendChild(datTd);
+
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+
+    const finalDownloadListP = document.getElementById('final-download-list');
+    if (finalDownloadListP) {
+      body.insertBefore(table, finalDownloadListP);
+    } else {
+      body.appendChild(table);
+    }
+  };
+</script>
+</head>
+<body>
+<p id="final-download-list">최종버전 다운로드 목록입니다.</p>
+</body>
+</html>
