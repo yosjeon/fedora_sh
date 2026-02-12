@@ -35,6 +35,17 @@ done
 cat <<__EOF__
 ${yyy}#-- ${bbb} ghp_dW4Z4dDZWHrvacH6NKvzLz5FCGQHVB0c 대피so디지대피 2507장마철 — repo Expires on Thu, Oct 2 2025.
 bitbucket 4카 BBwjLQ6yLFTmNrygzXrP3fdm9f6172DA 앹대..육이
-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?
+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? so커대제 2602 fedora 260512
+토큰 PAT 발급 - 260211
+1. github 로그인 > 우상단 프로필 클릭 > Settings
+2. 왼쪽 맨아래 Developer Setting
+3. Personal access tokens > Tokens Classic 선택
+4. Generate new token > Tockens Classic 클릭
+5. My Recovery Token
+6. Expiration > 90 | No Expire
+7. Select Scopes > repo 체크
+8. Gen token 버튼 클릭
+9. 녹색 토큰 문자열 복사해서 사용, 저장
+`git-pull-ALL-proj-dir.sh`
 ${xxx}
 __EOF__
