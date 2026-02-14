@@ -36,7 +36,7 @@ cat <<__EOF__
 ${yyy}#-- ${bbb} ghp_dW4Z4dDZWHrvacH6NKvzLz5FCGQHVB0c 대피so디지대피 2507장마철 — repo Expires on Thu, Oct 2 2025.
 bitbucket 4카 BBwjLQ6yLFTmNrygzXrP3fdm9f6172DA 앹대..육이
 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? so커대제 2602 fedora 260512
-ghp_cmEN7yKkiEPrDk8pyfouCMOSYm543078! 지비..스대엔 fedora 260512
+ghp_cmEN7yKkiEPrDk8pyfouCMOSYm543078! 지에비..스대엔 fedora 260512
 토큰 PAT 발급 - 260211
 1. github 로그인 > 우상단 프로필 클릭 > Settings
 2. 왼쪽 맨아래 Developer Setting
